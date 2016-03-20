@@ -113,12 +113,34 @@ describe('Functional Lists', function () {
 		expect(new_appended_ln.next.next.next.next).to.equal(ln2);
 	});
 
+	it('have a splitAt(id) function that returns a list only contains nodes upto the node with id', function () {
+		// e.g. (a b c d e).splitAt(c) => (a' b' c')
+		var orig_ln4 = ln4;
+		var splitLN4 = ln4.splitAt(ln2.id);
+		
+		expect(splitLN4.length()).to.equal(2);
+		expect(splitLN4.next.next).to.be.null;
+		expect(orig_ln4).to.equal(ln4);
+	});
+
+
+	it('have a find(id) function that returns the sublist that starts with a node with id', function () {
+		var ln2_from_ln4 = ln4.find(ln2.id);
+		expect(ln2_from_ln4).to.equal(ln2);
+	});
 
 	it('have an insertAt(id, list) that returns a new list', function () {
 		// e.g. (a b c d e).insertAt(c, (f, g, h)) would return (a b f g h c d e) as a new list
 		// the original list's (c d e) should be the same as the new lists (c d e) in terms of object equality
 		
+		// this example takes
+		// (4 3 2 1).insertAt(2, (3 2 1)) => (4' 3' 3' 2' 1' 2 1)
+		var ln4_with_ln3_at_ln2 = ln4.insertAt(ln2.id, ln3);
+		expect(ln4_with_ln3_at_ln2.length()).to.equal(7);
 
+		// make sure we didn't use the original ln3
+		expect(ln4_with_ln3_at_ln2.next.next).to.not.equal(ln3);
+		expect(ln3.length()).to.equal(3);
 
 	});
 

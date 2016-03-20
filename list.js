@@ -82,7 +82,31 @@ ListNode.prototype.append = function(otherList) {
 	}
 };
 
+ListNode.prototype.splitAt = function(id) {
+	// return a new list without the node with id and everything after it
+	if(this.next.id == id) {
+		return new ListNode(this.value);
+	} else {
+		return this.next.splitAt(id).shiftNode(this.value);
+	}
+}
 
+ListNode.prototype.find = function(id) {
+	var currentNode = this;
+	while(currentNode) {
+		if(currentNode.id == id) {
+			return currentNode;
+		}
+		currentNode = currentNode.next;
+	}
+	return null;
+}
+
+ListNode.prototype.insertAt = function(id, list) {
+	var firstPart = this.splitAt(id);
+	var secondPart = this.find(id);
+	return firstPart.append(list).append(secondPart);
+}
 
 
 exports.util = util;
