@@ -144,5 +144,10 @@ describe('Functional Lists', function () {
 
 	});
 
+	it('have a commonAncestor(list) function that finds the same node (by reference) in the two lists', function () {
+		var ln2_branch = ln2.shiftNode("test node 1").shiftNode("Test node 2");
+		expect(ln4.commonAncestor(ln2_branch)).to.equal(ln2);
+	});
+
 });
 

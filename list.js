@@ -38,6 +38,15 @@ ListNode.prototype.toStringShort = function() {
 	return "[" + ids.map(function(id) { return id.slice(0, 6); }).join(" ") + "]";
 }
 
+ListNode.prototype.toArray = function() {
+	var nodes = [];
+	var currentNode = this;
+	while(currentNode) {
+		nodes.push(currentNode);
+		currentNode = currentNode.next;
+	}
+	return nodes;
+}
 
 ListNode.prototype.length = function() {
 	var length = 0;
@@ -107,6 +116,19 @@ ListNode.prototype.insertAt = function(id, list) {
 	var secondPart = this.find(id);
 	return firstPart.append(list).append(secondPart);
 }
+
+ListNode.prototype.commonAncestor = function(otherList) {
+	var myPath = this.toArray().reverse();
+	var otherPath = otherList.toArray().reverse();
+
+	for(var i=0; i < myPath.length && i < otherPath.length; i++) {
+		if(myPath[i] !== otherPath[i]) {
+			return myPath[i-1];
+		}
+	}
+	return null;
+
+};
 
 
 exports.util = util;
