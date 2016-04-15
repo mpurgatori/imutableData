@@ -104,17 +104,17 @@ module.exports.commit = function () {
   // if it's not the first commit, remember to
   // get current branch from HEAD, and get the parent tree from refs
   /*
-    A commit object should look something like this:
+    A commit object should look like this:
 
     tree 2ba0f3bff73bd3f3ds212ba0f3bff73bd3f3ds21
-    author {your name - go ahead and hard code it ;)}
-    {your commit message!}
+    author { your name - go ahead and hard code it ;) }
+    { your commit message! }
 
     If there is a parent, it should look like this:
 
     tree 2ba0f3bff73bd3f3ds212ba0f3bff73bd3f3ds21
-    author {your name - go ahead and hard code it ;)}
-    {your commit message!}
+    author { your name - go ahead and hard code it ;) }
+    { your commit message! }
     parent f83b3bff73bd3f3ds212ba0f3bff73bd3f3ds21
 
     It should still be saved in the objects folder the same way tree and blob objects are saved!

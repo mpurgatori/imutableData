@@ -1,9 +1,9 @@
 'use strict';
 
 /**
-
-Hey - don't check here until you're done with ListNode ;)
-
+*
+* Hey - don't check here until you're done with ListNode ;)
+*
 **/
 
 const crypto = require('crypto');
