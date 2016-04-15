@@ -65,7 +65,7 @@ module.exports.init = function () {
       refs/master
       HEAD
   */
-}
+};
 
 module.exports.add = function () {
 
@@ -86,7 +86,7 @@ module.exports.add = function () {
   */
 
   // return the value of the added blob's hash!
-}
+};
 
 module.exports.commit = function () {
 
@@ -123,11 +123,11 @@ module.exports.commit = function () {
   // step 3. point the current branch at the new commit object
 
   // return the value of the commit's hash!
-}
+};
 
 module.exports.handleDefault = function () {
   throw 'Not a recognized command!';
-}
+};
 
 module.exports.createFVSObject = createFVSObject;
 module.exports.createBlobObject = createBlobObject;
