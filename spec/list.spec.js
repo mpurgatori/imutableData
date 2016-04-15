@@ -1,9 +1,10 @@
-var expect = require('chai').expect;
-var listModule = require('../list');
+'use strict';
 
-var listUtil = listModule.util;
+const expect = require('chai').expect;
+const listModule = require('../list');
 
-var ListNode = listModule.ListNode;
+const listUtil = listModule.util;
+const ListNode = listModule.ListNode;
 
 
 describe('Utilities object', function () {
@@ -11,15 +12,14 @@ describe('Utilities object', function () {
   // use the Node crypto library to compute SHA1
   // http://stackoverflow.com/a/6984262
   it('should have a getSha1 function', function () {
-    var sha = listUtil.getSha1("arbitrary text")
+    let sha = listUtil.getSha1("arbitrary text")
     expect(sha).to.equal("6ffa282ca37f30f3482e1958b8126af36df775d0");
   });
-
 });
 
 describe('Functional Lists', function () {
 
-  var value1, value2, value3, value4,
+  let value1, value2, value3, value4,
     ln1, ln2, ln3, ln4;
 
   beforeEach(function () {
@@ -56,8 +56,8 @@ describe('Functional Lists', function () {
   });
 
   it('have a toString method that outputs an array of ids: [id1 id2]', function () {
-    var ln1_sha = listUtil.getSha1(value1);
-    var ln2_sha = listUtil.getSha1(value2);
+    let ln1_sha = listUtil.getSha1(value1);
+    let ln2_sha = listUtil.getSha1(value2);
 
     expect(ln1.toString()).to.equal("[" + ln1_sha + "]");
     expect(ln2.toString()).to.equal("[" + ln2_sha + " " + ln1_sha + "]");
@@ -65,8 +65,8 @@ describe('Functional Lists', function () {
 
   // this is just a convenience method so we can make tests easier to read
   it('have a toStringShort method that outputs an array of ids shortened: [id1 id2]', function () {
-    var ln1_sha = listUtil.getSha1(value1);
-    var ln2_sha = listUtil.getSha1(value2);
+    let ln1_sha = listUtil.getSha1(value1);
+    let ln2_sha = listUtil.getSha1(value2);
 
     expect(ln1.toStringShort()).to.equal("[" + ln1_sha.slice(0, 6) + "]");
     expect(ln2.toStringShort()).to.equal("[" + ln2_sha.slice(0, 6) + " " + ln1_sha.slice(0,6) + "]");
@@ -78,20 +78,8 @@ describe('Functional Lists', function () {
   });
 
   it('have a shiftNode(value) method that returns a new ListNode holding value at the front', function () {
-    var ln5 = ln4.shiftNode("my fourth node value");
+    let ln5 = ln4.shiftNode("my fourth node value");
     expect(ln5.next).to.equal(ln4);
-  });
-
-
-  it('have a remove(id) function that returns a new ListNode without any nodes that have id', function () {
-    // be careful to not change the original linked list
-
-    var ln4_orig = ln4;
-
-    var new_ln4 = ln4.remove(ln3.id);
-
-    expect(ln4_orig).to.equal(ln4);
-    expect(new_ln4.next).to.equal(ln2);
   });
 
   it('have an append(otherList) function ', function () {
@@ -99,11 +87,13 @@ describe('Functional Lists', function () {
     // and all the nodes in otherList
     // you should make sure that you are reusing as much of the original list as possible
     // e.g. (a b c).append(d e) => (a' b' c' d e)
+    // note a' b' c' reads "a prime, b prime, c prime" - in that a, b, c are copies of
+    // the original a, b, c.
 
-    var orig_ln4 = ln4;
-    var orig_ln2 = ln2;
+    let orig_ln4 = ln4;
+    let orig_ln2 = ln2;
 
-    var new_appended_ln = ln4.append(ln2);
+    let new_appended_ln = ln4.append(ln2);
 
     // make sure ln4 and ln2 didn't change
     expect(orig_ln4).to.equal(ln4);
@@ -113,19 +103,27 @@ describe('Functional Lists', function () {
     expect(new_appended_ln.next.next.next.next).to.equal(ln2);
   });
 
+  it('have a remove(id) function that returns a new ListNode without any nodes that have id', function () {
+    // be careful to not change the original linked list
+    let ln4_orig = ln4;
+    let new_ln4 = ln4.remove(ln3.id);
+
+    expect(ln4_orig).to.equal(ln4);
+    expect(new_ln4.next).to.equal(ln2);
+  });
+
   it('have a splitAt(id) function that returns a list only contains nodes upto the node with id', function () {
     // e.g. (a b c d e).splitAt(c) => (a' b' c')
-    var orig_ln4 = ln4;
-    var splitLN4 = ln4.splitAt(ln2.id);
+    let orig_ln4 = ln4;
+    let splitLN4 = ln4.splitAt(ln2.id);
 
     expect(splitLN4.length()).to.equal(2);
     expect(splitLN4.next.next).to.be.null;
     expect(orig_ln4).to.equal(ln4);
   });
 
-
   it('have a find(id) function that returns the sublist that starts with a node with id', function () {
-    var ln2_from_ln4 = ln4.find(ln2.id);
+    let ln2_from_ln4 = ln4.find(ln2.id);
     expect(ln2_from_ln4).to.equal(ln2);
   });
 
@@ -135,19 +133,16 @@ describe('Functional Lists', function () {
 
     // this example takes
     // (4 3 2 1).insertAt(2, (3 2 1)) => (4' 3' 3' 2' 1' 2 1)
-    var ln4_with_ln3_at_ln2 = ln4.insertAt(ln2.id, ln3);
+    let ln4_with_ln3_at_ln2 = ln4.insertAt(ln2.id, ln3);
     expect(ln4_with_ln3_at_ln2.length()).to.equal(7);
 
     // make sure we didn't use the original ln3
     expect(ln4_with_ln3_at_ln2.next.next).to.not.equal(ln3);
     expect(ln3.length()).to.equal(3);
-
   });
 
   it('have a commonAncestor(list) function that finds the same node (by reference) in the two lists', function () {
-    var ln2_branch = ln2.shiftNode("test node 1").shiftNode("Test node 2");
+    let ln2_branch = ln2.shiftNode("test node 1").shiftNode("Test node 2");
     expect(ln4.commonAncestor(ln2_branch)).to.equal(ln2);
   });
-
 });
-
