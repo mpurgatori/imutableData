@@ -111,11 +111,11 @@ describe('FVS', function () {
       it('updates an existing entry in the index', function () {
         fvs.updateIndex(index, fileName, hash);
 
+        fs.writeFileSync('test1.txt', 'test1 edited content', 'utf8');
         hash = getSha1('test1 edited content');
-        index = ['test1.txt' + ' ' + hash];
-        fvs.updateIndex(index, fileName, hash);
+        let newIndex = fvs.updateIndex(index, fileName, hash);
 
-        expect(fs.readFileSync('./.fvs/index', 'utf8')).to.be.equal(index[0]);
+        expect(fs.readFileSync('./.fvs/index', 'utf8')).to.be.equal(newIndex);
       });
     });
   });

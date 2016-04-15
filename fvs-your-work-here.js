@@ -49,10 +49,14 @@ function createBlobObject (fileName) {
   // this will use our createFVSObject function above!
 }
 
+// NOTE: the index passed in here is an array representing the existing index
+// Each entry in the array is a string representing a line in the index.
+// This means that you'll actually read the index and turn it into an array before you get here
 function updateIndex (index, fileName, blobRef) {
   // a. create the index if none exists
   // b. check if the file already has an index entry, and remove it if it does!
   // c. add the new line to the index
+  // d. return the new index (in string form)!
 }
 
 module.exports.init = function () {
