@@ -125,6 +125,38 @@ module.exports.commit = function () {
   // return the value of the commit's hash!
 };
 
+
+/**
+*
+* EXTRA CREDIT (no specs - you're on your own!)
+* Don't forget to include these in fvs-cli-helper!
+*
+**/
+
+module.exports.branch = function () {
+
+  // step 1. get the hash of the current commit from the file pointed to in HEAD
+
+  // step 2. create the branch file at refs/
+  // NOTE: in the real Git, this is in refs/heads, but we've simplified it here to just be in refs/
+
+  // return the current commit's hash!
+};
+
+// This isn't beyond you, but it's not a piece of cake either!
+// You'll need to traverse the tree - feel free to work on this
+// or implement the behavior from the ./helpers file.
+module.exports.checkout = function () {
+  // step 1. get the commit hash that the branch points to
+
+  // step 2. write the contents of the file tree to the working copy
+
+  // step 3. write the file entries to the index
+
+  // step 4. point HEAD at the new branch
+};
+
+
 module.exports.handleDefault = function () {
   throw 'Not a recognized command!';
 };
