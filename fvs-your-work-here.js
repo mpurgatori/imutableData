@@ -126,7 +126,7 @@ module.exports.commit = function () {
 }
 
 module.exports.handleDefault = function () {
-  throw new Error('Not a recognized command!');
+  throw 'Not a recognized command!';
 }
 
 module.exports.createFVSObject = createFVSObject;
