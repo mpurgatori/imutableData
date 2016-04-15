@@ -49,7 +49,7 @@ describe('Functional Lists', function () {
     expect(ln2.next).to.equal(ln1);
   });
 
-  it("have a constructor function that sets an id based on the value", function() {
+  it("have a constructor function that sets an id based on the value", function () {
     // a ListNode's id property should equal the SHA1(this.next.id + this.value)
     // if next is null then it's just this.value
     expect(ln1.id).to.equal(listUtil.getSha1(value1));
@@ -72,7 +72,7 @@ describe('Functional Lists', function () {
     expect(ln2.toStringShort()).to.equal("[" + ln2_sha.slice(0, 6) + " " + ln1_sha.slice(0,6) + "]");
   });
 
-  it('have a length() function that returns the number of nodes', function() {
+  it('have a length() function that returns the number of nodes', function () {
     expect(ln1.length()).to.equal(1);
     expect(ln4.length()).to.equal(4);
   });

@@ -289,7 +289,6 @@ describe('FVS', function () {
         commitDir = hash.slice(0, 2);
         commitFile = hash.slice(2);
 
-        console.log('test', commitContent)
         let file = fs.readFileSync('./.fvs/objects/' + commitDir + '/' + commitFile, 'utf8');
         expect(regexp.test(file)).to.be.true;
       });
