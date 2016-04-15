@@ -1,0 +1,20 @@
+{
+  "name": "fvs",
+  "version": "0.0.1",
+  "description": "Fullstack Version System",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "rimraf": "^2.5.2"
+  }
+}
