@@ -9,7 +9,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const rmdir = require('rimraf').sync;
 
-const fvs = require('../fvs-your-funcs');
+const fvs = require('../fvs-your-work-here');
 const getSha1 = require('../util').getSha1;
 
 describe('FVS', function () {
