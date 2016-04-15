@@ -1,7 +1,7 @@
 'use strict';
 
 // Make sure to fill this in!!!!
-const YOUR_NAME = 'Tom Kelly';
+const YOUR_NAME = 'FILL IN YOUR NAME HERE!!!!!';
 
 const expect = require('chai').expect;
 const cp = require('child_process');
