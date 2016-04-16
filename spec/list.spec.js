@@ -50,8 +50,7 @@ describe('Functional Lists', function () {
   });
 
   it("have a constructor function that sets an id based on the value", function () {
-    // a ListNode's id property should equal the SHA1(this.next.id + this.value)
-    // if next is null then it's just this.value
+    // a ListNode's id property should equal the SHA1(value)
     expect(ln1.id).to.equal(listUtil.getSha1(value1));
   });
 
