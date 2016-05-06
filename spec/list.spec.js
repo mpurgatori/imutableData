@@ -7,7 +7,7 @@ const listUtil = listModule.util;
 const ListNode = listModule.ListNode;
 
 
-describe('Utilities object', function () {
+xdescribe('Utilities object', function () {
 
   // use the Node crypto library to compute SHA1
   // http://stackoverflow.com/a/6984262
@@ -17,7 +17,7 @@ describe('Utilities object', function () {
   });
 });
 
-describe('Functional Lists', function () {
+xdescribe('Functional Lists', function () {
 
   let value1, value2, value3, value4,
     ln1, ln2, ln3, ln4;

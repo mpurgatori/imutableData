@@ -7,14 +7,13 @@
 **/
 
 const fs = require('fs');
-const crypto = require('crypto');
 const getSha1 = require('./util').getSha1;
 
 function toObject (index, project) {
   project = project || {};
   index
     .split('\n')
-    .forEach((entry, idx) => {
+    .forEach((entry) => {
 
       entry = entry.split(' ');
       let file = entry[0];
@@ -59,4 +58,4 @@ function createTreeObject (contents) {
 module.exports = function createTreesFromIndex (index) {
   let project = toObject(index);
   return treeSum(project);
-}
+};

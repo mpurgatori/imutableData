@@ -15,4 +15,4 @@ module.exports = {
       .update(data)
       .digest('hex');
   }
-}
+};

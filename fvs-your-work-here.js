@@ -49,11 +49,11 @@ function createBlobObject (fileName) {
   // this will use our createFVSObject function above!
 }
 
-// NOTE: the index passed in here is an array representing the existing index
-// Each entry in the array is a string representing a line in the index.
-// This means that you'll actually read the index and turn it into an array before you get here
+// NOTE: the index passed in here is a string representing the result of reading the index file
+// If the index file did not previously exist, assume that you created it and set its contents to an empty string
+// This means that you should account for getting a '' passed in as well!
 function updateIndex (index, fileName, blobRef) {
-  // a. create the index if none exists
+  // a. parse the index into an array
   // b. check if the file already has an index entry, and remove it if it does!
   // c. add the new line to the index
   // d. return the new index (in string form)!
@@ -99,7 +99,7 @@ module.exports.commit = function () {
   // step 1. create a tree of the project based on the index
   /*
     For now, I've done this for you! It's not easy!
-    If you get done early, check out the specs to implement this on your own!
+    If you get done early, try implementing this on your own!
   */
   let index = fs.readFileSync('./.fvs/index', 'utf8');
   let treeRoot = require('./helpers')(index);
