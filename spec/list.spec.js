@@ -102,7 +102,7 @@ xdescribe('Functional Lists', function () {
     expect(new_appended_ln.next.next.next.next).to.equal(ln2);
   });
 
-  it('have a remove(id) function that returns a new ListNode without any nodes that have id', function () {
+  it('have a remove(id) function that returns a new ListNode without the node with the id', function () {
     // be careful to not change the original linked list
     let ln4_orig = ln4;
     let new_ln4 = ln4.remove(ln3.id);
