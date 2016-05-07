@@ -112,7 +112,7 @@ xdescribe('Functional Lists', function () {
   });
 
   it('have a splitAt(id) function that returns a list only contains nodes upto the node with id', function () {
-    // e.g. (a b c d e).splitAt(c) => (a' b' c')
+    // e.g. (a b c d e).splitAt(c) => (a' b')
     let orig_ln4 = ln4;
     let splitLN4 = ln4.splitAt(ln2.id);
 
