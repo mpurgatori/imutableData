@@ -21,7 +21,6 @@
 *   fs.readFileSync
 *   fs.writeFileSync
 *   fs.readdirSync
-*   fs.rmdirSync
 *   fs.mkdirSync
 *
 * https://nodejs.org/api/fs.html
