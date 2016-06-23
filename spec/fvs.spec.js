@@ -97,14 +97,14 @@ xdescribe('FVS', function () {
 
         fileName = 'test1.txt';
         hash = getSha1('test1 content');
-        index = ['test1.txt' + ' ' + hash];
+        index = 'test1.txt' + ' ' + hash;
       });
 
       afterEach(function () { rmdir('test1.txt'); });
 
       it('creates a new entry in the index', function () {
         fvs.updateIndex(index, fileName, hash);
-        expect(fs.readFileSync('./.fvs/index', 'utf8')).to.be.equal(index[0]);
+        expect(fs.readFileSync('./.fvs/index', 'utf8')).to.be.equal(index);
       });
 
       it('updates an existing entry in the index', function () {
