@@ -97,9 +97,14 @@ function createBlobObject (filePath) {
  */
 function updateIndex (index, filePath, blobHash) {
   // a. parse the index into an array
+  
   // b. check if the file already has an index entry, and remove it if it does!
+  
   // c. add the new line to the index
-  // d. return the new index (in string form)!
+  
+  // d. parse the new index back into a string and write it to .fvs/index
+  
+  // e. return string of the new index!
 }
 
 module.exports.init = function () {
