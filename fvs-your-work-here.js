@@ -126,11 +126,7 @@ module.exports.add = function () {
 
   // step 0b. create the index if none exists
 
-  // step 1: create a 'blob' object in .fvs/objects
-
-  /**
-   *  Hey, remember those functions we wrote earlier...?
-   */
+  // step 1: create a 'blob' object in .fvs/objects (Hey, remember those functions we wrote earlier...?)
 
   // step 2: add the file to the index
 
