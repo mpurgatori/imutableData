@@ -219,7 +219,7 @@ xdescribe('FVS', function () {
         fs.writeFileSync('./test1.txt', 'test1 content', 'utf8');
         fs.mkdirSync('.fvs/refs');
         fs.writeFileSync('./.fvs/HEAD', 'ref: refs/master');
-        fs.writeFileSync('./.fvs/refs/master');
+        fs.writeFileSync('./.fvs/refs/master', '');
 
         blobHash = getSha1('test1 content');
         blobDir = blobHash.slice(0, 2);

@@ -96,7 +96,7 @@ function createBlobObject (filePath) {
  * This means that you should account for getting a '' passed in as well!
  */
 function updateIndex (index, filePath, blobHash) {
-  // a. parse the index into an array
+  // a. parse the index into an array (if the index is empty, it should be an empty array)
   
   // b. check if the file already has an index entry, and remove it if it does!
   
