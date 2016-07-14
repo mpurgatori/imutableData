@@ -77,7 +77,7 @@ xdescribe('Functional Lists', function () {
   });
 
   it('have a shiftNode(value) method that returns a new ListNode holding value at the front', function () {
-    let ln5 = ln4.shiftNode("my fourth node value");
+    let ln5 = ln4.shiftNode("my new node value");
     expect(ln5.next).to.equal(ln4);
   });
 
