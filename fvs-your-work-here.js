@@ -120,6 +120,14 @@ module.exports.init = function () {
    */
 };
 
+/**
+ * 
+ * At this point, create a new directory and try typing 'fvs' into you command line -
+ * if you `ls -a` you should see your fvs directory, and if you `cd .fvs`, you should
+ * be able to explore it!
+ * 
+ */
+
 module.exports.add = function () {
 
   // step 0a. make sure a filename is passed in as an argument
@@ -138,6 +146,14 @@ module.exports.add = function () {
 
   // return the value of the added blob's hash!
 };
+
+/**
+ * 
+ * Awesome job getting this far! Try playing around by running `fvs` in a new directory,
+ * `touch <anyFileName.js>`, and try to `fvs add <anyFileName.js>!` Can you find the fvs objects
+ * that got created? What does the index look like? 
+ * 
+ */
 
 module.exports.commit = function () {
 
@@ -177,6 +193,12 @@ module.exports.commit = function () {
   // return the value of the commit's hash!
 };
 
+/**
+ * 
+ * Awesome! You know what to do! Go ahead and start adding and commiting like a real project!
+ * It will totally work!
+ * 
+ */
 
 /**
 *
