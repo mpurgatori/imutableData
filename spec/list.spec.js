@@ -12,8 +12,8 @@ xdescribe('Utilities object', function () {
   // use the Node crypto library to compute SHA1
   // http://stackoverflow.com/a/6984262
   it('should have a getSha1 function', function () {
-    let sha = listUtil.getSha1("arbitrary text")
-    expect(sha).to.equal("6ffa282ca37f30f3482e1958b8126af36df775d0");
+    let sha = listUtil.getSha1('arbitrary text');
+    expect(sha).to.equal('6ffa282ca37f30f3482e1958b8126af36df775d0');
   });
 });
 
@@ -23,10 +23,10 @@ xdescribe('Functional Lists', function () {
     ln1, ln2, ln3, ln4;
 
   beforeEach(function () {
-    value1 = "my first node";
-    value2 = "my second node";
-    value3 = "my third node";
-    value4 = "my fourth node";
+    value1 = 'my first node';
+    value2 = 'my second node';
+    value3 = 'my third node';
+    value4 = 'my fourth node';
 
     ln1 = new ListNode(value1);
     ln2 = new ListNode(value2, ln1);
@@ -35,7 +35,7 @@ xdescribe('Functional Lists', function () {
 
   });
 
-  it('have a basic constructor function', function () {
+  it('has a basic constructor function', function () {
     // store the value
     expect(ln1.value).to.equal(value1);
 
@@ -44,47 +44,40 @@ xdescribe('Functional Lists', function () {
 
   });
 
-  it('have a constructor function that takes another ListNode', function () {
+  it('has a constructor function that takes another ListNode', function () {
     // ln2.next should equal ln (not value, but by reference)
     expect(ln2.next).to.equal(ln1);
   });
 
-  it("have a constructor function that sets an id based on the value", function () {
+  it('has a constructor function that sets an id based on the value', function () {
     // a ListNode's id property should equal the SHA1(value)
     expect(ln1.id).to.equal(listUtil.getSha1(value1));
   });
 
-  it('have a toString method that outputs an array of ids: [id1 id2]', function () {
+  it('has a toString method that outputs a space-delimited list of ids surrounded by square brackets: [id1 id2]', function () {
     let ln1_sha = listUtil.getSha1(value1);
     let ln2_sha = listUtil.getSha1(value2);
 
-    expect(ln1.toString()).to.equal("[" + ln1_sha + "]");
-    expect(ln2.toString()).to.equal("[" + ln2_sha + " " + ln1_sha + "]");
+    expect(ln1.toString()).to.equal('[' + ln1_sha + ']');
+    expect(ln2.toString()).to.equal('[' + ln2_sha + ' ' + ln1_sha + ']');
   });
 
-  // this is just a convenience method so we can make tests easier to read
-  it('have a toStringShort method that outputs an array of ids shortened: [id1 id2]', function () {
-    let ln1_sha = listUtil.getSha1(value1);
-    let ln2_sha = listUtil.getSha1(value2);
-
-    expect(ln1.toStringShort()).to.equal("[" + ln1_sha.slice(0, 6) + "]");
-    expect(ln2.toStringShort()).to.equal("[" + ln2_sha.slice(0, 6) + " " + ln1_sha.slice(0,6) + "]");
-  });
-
-  it('have a length() function that returns the number of nodes', function () {
+  it('has a length() function that returns the number of nodes', function () {
     expect(ln1.length()).to.equal(1);
     expect(ln4.length()).to.equal(4);
   });
 
-  it('have a shiftNode(value) method that returns a new ListNode holding value at the front', function () {
-    let ln5 = ln4.shiftNode("my new node value");
+  it('has a shiftNode(value) method that returns a new ListNode holding value at the front', function () {
+    let ln5 = ln4.shiftNode('my new node value');
     expect(ln5.next).to.equal(ln4);
   });
 
-  it('have an append(otherList) function ', function () {
-    // creates a new list that is the nodes of the original list
-    // and all the nodes in otherList
-    // you should make sure that you are reusing as much of the original list as possible
+  it('has an append(otherList) function ', function () {
+    // creates a new list that is the nodes of the originalList and all the nodes in otherList
+    
+    // each node from the original list will need to be a copy, but each node from the otherList
+    // should remain the same
+
     // e.g. (a b c).append(d e) => (a' b' c' d e)
     // note a' b' c' reads "a prime, b prime, c prime" - in that a, b, c are copies of
     // the original a, b, c.
@@ -102,8 +95,9 @@ xdescribe('Functional Lists', function () {
     expect(new_appended_ln.next.next.next.next).to.equal(ln2);
   });
 
-  it('have a remove(id) function that returns a new ListNode without the node with the id', function () {
-    // be careful to not change the original linked list
+  it('has a remove(id) function that returns a new ListNode without the node with the id', function () {
+    // you may assume that ids are unique (so you'll only ever remove at most one node)
+    // be careful to not change the original linked list though!
     let ln4_orig = ln4;
     let new_ln4 = ln4.remove(ln3.id);
 
@@ -111,7 +105,7 @@ xdescribe('Functional Lists', function () {
     expect(new_ln4.next).to.equal(ln2);
   });
 
-  it('have a splitAt(id) function that returns a list only contains nodes upto the node with id', function () {
+  it('has a splitAt(id) function that returns a list only contains nodes upto the node with id', function () {
     // e.g. (a b c d e).splitAt(c) => (a' b')
     let orig_ln4 = ln4;
     let splitLN4 = ln4.splitAt(ln2.id);
@@ -121,13 +115,13 @@ xdescribe('Functional Lists', function () {
     expect(orig_ln4).to.equal(ln4);
   });
 
-  it('have a find(id) function that returns the sublist that starts with a node with id', function () {
+  it('has a find(id) function that returns the sublist that starts with a node with id', function () {
     let ln2_from_ln4 = ln4.find(ln2.id);
     expect(ln2_from_ln4).to.equal(ln2);
   });
 
-  it('have an insertAt(id, list) that returns a new list', function () {
-    // e.g. (a b c d e).insertAt(c, (f, g, h)) would return (a b f g h c d e) as a new list
+  it('has an insertAt(id, list) that returns a new list', function () {
+    // e.g. (a b c d e).insertAt(c, (f, g, h)) would return (a' b' f' g' h' c d e) as a new list
     // the original list's (c d e) should be the same as the new lists (c d e) in terms of object equality
 
     // this example takes
@@ -140,8 +134,8 @@ xdescribe('Functional Lists', function () {
     expect(ln3.length()).to.equal(3);
   });
 
-  it('have a commonAncestor(list) function that finds the same node (by reference) in the two lists', function () {
-    let ln2_branch = ln2.shiftNode("test node 1").shiftNode("Test node 2");
+  it('has a commonAncestor(list) function that finds the same node (by reference) in the two lists', function () {
+    let ln2_branch = ln2.shiftNode('test node 1').shiftNode('Test node 2');
     expect(ln4.commonAncestor(ln2_branch)).to.equal(ln2);
   });
 });
