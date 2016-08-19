@@ -46,9 +46,9 @@ function createFVSObject (fileContents) {
   
   // b. Use the first two characters of the hash as the directory in .fvs/objects
   
-  // c. Check if the directory already exists! Do you know how to check if a directory exists in node?
-  //      Hint: you'll need to use a try/catch block
-  //      Another hint: look up fs.statSync
+  // c. Check if the directory already exists (do you know how to check if a directory exists in node)?
+  //      Hint: what do you get when you fs.readdir the .fvs/objects directory...
+  //    If the directory doesn't exist, you'll need to make it
   
   // d. Write a file whose name is the rest of the hash, and whose contents is the contents of the file
   
@@ -92,6 +92,7 @@ function createBlobObject (filePath) {
  * 
  * 
  * NOTE: the index passed in here is a string representing the result of reading the index file
+ * Remember that each line is delimited by a '\n', and the content of each line is space delimited
  * If the index file did not previously exist, assume that you created it and set its contents to an empty string
  * This means that you should account for getting a '' passed in as well!
  */
@@ -111,11 +112,13 @@ module.exports.init = function () {
   // step 1. if a .fvs file already exists, we should short circuit
 
   // step 2. do you remember the files/directories we need to make?
+  // make you pass an empty string as the contents for any initially empty files,
+  // otherwise those files will have an initial content of 'undefined'
   
   /**
    *  .fvs/
    *    objects/
-   *    refs/master
+   *    refs/master (in real git, it's refs/heads/master, but we can simplify here)
    *    HEAD
    */
 };
@@ -159,11 +162,12 @@ module.exports.commit = function () {
 
   // step 0a. make sure we have a lovely commit message!
 
-  // step 1. create a tree of the project based on the index
-
   /**
+   * 
+   * step 1. create a tree of the project based on the index
    * For now, I've done this for you! It's not easy!
    * If you get done early, try implementing this on your own!
+   * 
    */
   let index = fs.readFileSync('./.fvs/index', 'utf8');
   let treeRootHash = require('./helpers')(index);
