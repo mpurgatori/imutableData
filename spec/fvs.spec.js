@@ -125,19 +125,23 @@ xdescribe('FVS', function () {
 
       let rootDir,
           fvsDir,
-          refs;
+          refs,
+          headContent;
 
       it('creates the appropriate directories and files', function () {
         fvs.init();
         rootDir = fs.readdirSync('./');
         fvsDir = fs.readdirSync('./.fvs');
         refs = fs.readdirSync('./.fvs/refs');
+        headContent = fs.readFileSync('.fvs/HEAD', 'utf8');
 
         expect(rootDir.indexOf('.fvs') !== -1).to.be.true;
         expect(fvsDir.indexOf('objects') !== -1).to.be.true;
         expect(fvsDir.indexOf('HEAD') !== -1).to.be.true;
         expect(fvsDir.indexOf('refs') !== -1).to.be.true;
         expect(refs.indexOf('master') !== -1).to.be.true;
+
+        expect(headContent).to.be.equal('refs/master');
       });
 
       it('throws an error if an fvs directory already exists', function () {
@@ -218,7 +222,7 @@ xdescribe('FVS', function () {
         fs.mkdirSync('.fvs/objects');
         fs.writeFileSync('./test1.txt', 'test1 content', 'utf8');
         fs.mkdirSync('.fvs/refs');
-        fs.writeFileSync('./.fvs/HEAD', 'ref: refs/master');
+        fs.writeFileSync('./.fvs/HEAD', 'refs/master');
         fs.writeFileSync('./.fvs/refs/master', '');
 
         blobHash = getSha1('test1 content');

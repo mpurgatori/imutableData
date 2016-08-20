@@ -119,7 +119,7 @@ module.exports.init = function () {
    *  .fvs/
    *    objects/
    *    refs/master (in real git, it's refs/heads/master, but we can simplify here)
-   *    HEAD
+   *    HEAD (in real git, the content looks like 'ref: refs/heads/master', but we'll simplify here too and just write 'refs/master'')
    */
 };
 
@@ -179,13 +179,13 @@ module.exports.commit = function () {
    * A commit object should look like this:
    *
    * tree 2ba0f3bff73bd3f3ds212ba0f3bff73bd3f3ds21 (This is the treeRootHash defined above!)
-   * author { your name - go ahead and hard code it ;) }
+   * author { your name - go ahead and hard code it to the name you entered in list.spec.js }
    * { your commit message! }
    *
    * If there is a parent, it should look like this:
    *
    * tree 2ba0f3bff73bd3f3ds212ba0f3bff73bd3f3ds21
-   * author { your name - go ahead and hard code it ;) }
+   * author { your name - go ahead and hard code it to the name you entered in list.spec.js }
    * { your commit message! }
    * parent f83b3bff73bd3f3ds212ba0f3bff73bd3f3ds21
    *
