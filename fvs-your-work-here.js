@@ -152,7 +152,7 @@ module.exports.add = function () {
 
 /**
  * 
- * Awesome job getting this far! Try playing around by running `fvs` in a new directory,
+ * Awesome job getting this far! Try playing around by running `fvs init` in a new directory,
  * `touch <anyFileName.js>`, and try to `fvs add <anyFileName.js>!` Can you find the fvs objects
  * that got created? What does the index look like? 
  * 
