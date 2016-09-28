@@ -52,6 +52,7 @@ xdescribe('Functional Lists', function () {
   it('has a constructor function that sets an id based on the value', function () {
     // a ListNode's id property should equal the SHA1(value)
     expect(ln1.id).to.equal(listUtil.getSha1(value1));
+    expect(ln1.id).to.not.be.equal(undefined);
   });
 
   it('has a toString method that outputs a space-delimited list of ids surrounded by square brackets: [id1 id2]', function () {
