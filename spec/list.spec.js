@@ -6,17 +6,6 @@ const listModule = require('../list');
 const listUtil = listModule.util;
 const ListNode = listModule.ListNode;
 
-
-xdescribe('Utilities object', function () {
-
-  // use the Node crypto library to compute SHA1
-  // http://stackoverflow.com/a/6984262
-  it('should have a getSha1 function', function () {
-    let sha = listUtil.getSha1('arbitrary text');
-    expect(sha).to.equal('6ffa282ca37f30f3482e1958b8126af36df775d0');
-  });
-});
-
 xdescribe('Functional Lists', function () {
 
   let value1, value2, value3, value4,

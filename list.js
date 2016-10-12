@@ -1,11 +1,17 @@
 'use strict';
 
-const crypto = require('crypto');
-
-const util = {
-  getSha1: function (data) {}
-};
+// Destructured assignment! Whoa! This "extracts" getSha1 from the util's exports object!
+const { getSha1 } = require('./util'); 
 
 function ListNode (value, next) {}
+/* want to use ES6? Try writing this as a class:
+class ListNode {
 
-module.exports = { util: util, ListNode: ListNode };
+  constructor (value, next) {}
+}
+*/
+
+
+module.exports = { ListNode }; 
+// Yow! Even more destructured assignment
+// This is the same as: module.exports = { ListNode: ListNode };
