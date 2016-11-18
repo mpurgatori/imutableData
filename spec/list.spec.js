@@ -68,12 +68,12 @@ describe('Functional Lists', function () {
 
     });
 
-    it('has a constructor function that takes another ListNode', function () {
+    it('takes in a listNode as its second parameter and points the first listNode to it', function () {
       // ln2.next should equal ln (not value, but by reference)
       expect(ln2.next).to.equal(ln1);
     });
 
-    it('has a constructor function that sets an id based on the value', function () {
+    it('assigns a id property based on the inputted value', function () {
       // a ListNode's id property should equal the SHA1(value)
       expect(ln1.id).to.equal(listUtil.getSha1(value1));
       expect(ln1.id).to.not.be.equal(undefined);
@@ -108,7 +108,7 @@ describe('Functional Lists', function () {
   });
 
   describe('append', function() {
-    it('has an append(otherList) function ', function () {
+    it('combines two lists together, returning the listNode pointing to the start of the list', function () {
       // creates a new list that is the nodes of the originalList and all the nodes in otherList
       
       // each node from the original list will need to be a copy, but each node from the otherList
@@ -118,10 +118,8 @@ describe('Functional Lists', function () {
       // note a' b' c' reads "a prime, b prime, c prime" - in that a, b, c are copies of
       // the original a, b, c.
 
-      let new_appended_ln = ln4.append(ln2);
-
-      expect(new_appended_ln.length()).to.equal(6);
-      expect(new_appended_ln.next.next.next.next).to.equal(ln2);
+      expect(ln4.append(ln2).length()).to.equal(6);
+      expect(ln4.append(ln2).next.next.next.next).to.equal(ln2);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
   })
@@ -131,16 +129,15 @@ describe('Functional Lists', function () {
       // you may assume that ids are unique (so you'll only ever remove at most one node)
       // be careful to not change the original linked list though!
 
-      let new_ln4 = ln4.remove(ln3.id);
-
-      expect(new_ln4.next).to.equal(ln2);
+      expect(ln4.remove(ln3.id).length()).to.equal(3);
+      expect(ln4.remove(ln3.id).next).to.equal(ln2);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
-  })
+  });
 
 
   describe('splitAt', function() {
-    it('returns a list only contains nodes upto the node with id', function () {
+    it('returns a list that only contains nodes up to the node with id', function () {
       // e.g. (a b c d e).splitAt(c) => (a' b')
       let splitLN4 = ln4.splitAt(ln2.id);
 
@@ -148,38 +145,33 @@ describe('Functional Lists', function () {
       expect(splitLN4.next.next).to.be.null;
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
-  })
+  });
 
   describe('find', function() {
     it('returns the sublist that starts with a node with id', function () {
-      let ln2_from_ln4 = ln4.find(ln2.id);
-      expect(ln2_from_ln4).to.equal(ln2);
+      expect(ln4.find(ln2.id)).to.equal(ln2);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
-  }
+  }); 
 
   describe('insertAt', function() {
-    it('returns a new list with the new node added', function () {
+    it('returns a new list with the inputted list added immediately before the inputted id', function () {
       // e.g. (a b c d e).insertAt(c, (f, g, h)) would return (a' b' f' g' h' c d e) as a new list
       // the original list's (c d e) should be the same as the new lists (c d e) in terms of object equality
 
       // this example takes
       // (4 3 2 1).insertAt(2, (3 2 1)) => (4' 3' 3' 2' 1' 2 1)
-      let ln4_with_ln3_at_ln2 = ln4.insertAt(ln2.id, ln3);
-      expect(ln4_with_ln3_at_ln2.length()).to.equal(7);
-
-      // make sure we didn't use the original ln3
-      expect(ln4_with_ln3_at_ln2.next.next).to.not.equal(ln3);
-      expect(ln3.length()).to.equal(3);
+      expect(ln4.insertAt(ln2.id, ln3).length()).to.equal(7);
+      expect(ln2.insertAt(ln1.id, ln3).next.next.next.next).to.equal(ln1)
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
-  })
+  });
 
-  describe('commonAncestor', function() {
-    it('return the nearest ancestor (shared node) of the two lists and returns it', function () {
+  describe('intersection', function() {
+    it('find and return the first shared node of the two lists', function () {
       let ln2_branch = ln2.prepend('test node 1').prepend('Test node 2');
-      expect(ln4.commonAncestor(ln2_branch)).to.equal(ln2);
+      expect(ln4.intersection(ln2_branch)).to.equal(ln2);
       expect(hasAnyImmutableChanged()).to.equal(false);
-    });  
-  })
+    });
+  });
 });
