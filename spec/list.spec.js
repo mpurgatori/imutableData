@@ -1,3 +1,4 @@
+
 'use strict';
 
 const expect = require('chai').expect;
@@ -35,10 +36,9 @@ describe('Functional Lists', function () {
   let value1, value2, value3, value4, ln1, ln2, ln3, ln4;
 
   function hasAnyImmutableChanged() {
-    for (const listNode of [ln1, ln2, ln3, ln4]) {
-      return hasImmutableChanged(listNode);
-    }
+    return [ln1, ln2, ln3, ln4].some(hasImmutableChanged);
   }
+  
 
   beforeEach(function () {
     value1 = 'my first node';
@@ -51,9 +51,7 @@ describe('Functional Lists', function () {
     ln3 = new ListNode(value3, ln2);
     ln4 = new ListNode(value4, ln3);
 
-    for (const listNode of [ln1, ln2, ln3, ln4]) {
-      markImmutableDataStructure(listNode);
-    }
+    [ln1, ln2, ln3, ln4].forEach(markImmutableDataStructure);
 
   });
 
