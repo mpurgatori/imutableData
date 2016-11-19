@@ -47,7 +47,7 @@ ListNode.prototype.remove = function (id) {
 
 ListNode.prototype.splitAt = function (id) {
   if (this.id === id) return null;
-  else if (!this.next) return this;
+  else if (!this.next) return null;
   else return new ListNode(this.value, this.next.splitAt(id));
 };
 
