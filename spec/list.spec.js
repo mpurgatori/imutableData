@@ -4,7 +4,7 @@
 const expect = require('chai').expect;
 const listModule = require('../list');
 
-const listUtil = listModule.util;
+const listUtil = require('../util');
 const ListNode = listModule.ListNode;
 
 function markImmutableDataStructure(listNode) {
@@ -15,7 +15,7 @@ function markImmutableDataStructure(listNode) {
       this._next = value;
       this.changed = true;
     },
-    get: function(value) { 
+    get: function(value) {
       return this._next;
     }
   });
@@ -38,7 +38,7 @@ describe('Functional Lists', function () {
   function hasAnyImmutableChanged() {
     return [ln1, ln2, ln3, ln4].some(hasImmutableChanged);
   }
-  
+
 
   beforeEach(function () {
     value1 = 'my first node';
@@ -74,7 +74,7 @@ describe('Functional Lists', function () {
       // a ListNode's id property should equal the SHA1(value)
       expect(ln1.id).to.equal(listUtil.getSha1(value1));
       expect(ln1.id).to.not.be.equal(undefined);
-    });  
+    });
   });
 
   describe('toString', function() {
@@ -107,7 +107,7 @@ describe('Functional Lists', function () {
   describe('append', function() {
     it('combines two lists together, returning the listNode pointing to the start of the list', function () {
       // creates a new list that is the nodes of the originalList and all the nodes in otherList
-      
+
       // each node from the original list will need to be a copy, but each node from the otherList
       // should remain the same
 
@@ -120,10 +120,10 @@ describe('Functional Lists', function () {
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
   })
- 
+
   describe('remove', function() {
     it('returns a copy of the list if the id does not exist', function () {
-      // In a performant implementation, we would return a reference the original list, 
+      // In a performant implementation, we would return a reference the original list,
       // but this will be easier to implement
       // e.g. (a b c d e).splitAt(c) => (a' b')
 
@@ -154,7 +154,7 @@ describe('Functional Lists', function () {
 
     it('returns a list that only contains nodes up to the node with id', function () {
       // e.g. (a b c d e).splitAt(c) => (a' b')
-      
+
       expect(ln4.splitAt(ln2.id).length()).to.equal(2);
       expect(ln4.splitAt(ln2.id).next.next).to.be.null;
       expect(hasAnyImmutableChanged()).to.equal(false);
@@ -175,14 +175,14 @@ describe('Functional Lists', function () {
       }
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
-  }); 
+  });
 
   describe('insertAt', function() {
     it('returns a copy of the list if the inputted id does not exist', function () {
       // e.g. (a b c d e).insertAt(c, (f, g, h)) would return (a' b' f' g' h' c d e) as a new list
       // the original list's (c d e) should be the same as the new lists (c d e) in terms of object equality
 
-      // In a performant implementation, we would return a reference the original list, 
+      // In a performant implementation, we would return a reference the original list,
       // but this will be easier to implement
 
       // this example takes
